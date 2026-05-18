@@ -140,13 +140,22 @@ referencia al lado izquierdo.
 
 ## Paso 6 — Crear la PowerTable
 
-1. Selecciona **New PowerTable Sheet**
+1. En el home del ítem Plan selecciona **New PowerTable Sheet**
 2. Nombra: `Consolidado 2026`
-3. Conecta a los datos cargados
-4. Configura con `region`, `estacion`, `categoria_gasto` como dimensiones y los 12 meses
-5. Agrega varianza: `([Presupuesto 2026] - [monto_real_mxn]) / [monto_real_mxn]`
+3. Selecciona **Create a New App**
+4. Selecciona la conexión `zava-conn-sql` → base de datos `__fabric_plan_sys` → **Add**
+5. En **Select Table** elige **New Table**
+6. Configura:
+   - **Table Name:** `presupuesto_2026`
+   - **Import Data:** `Upload File`
+   - **Import Type:** `Excel`
+   - Sube `zava_actuals.xlsx` — selecciona la hoja `2025`
+7. En **Configure Table**:
+   - Marca **Primary Key** en `region`, `estacion` y `categoria_gasto`
+   - Deja **SCD** desactivado
+   - Haz clic en **Finish**
 
-> ⚠️ Sintaxis de fórmula y flujo de conexión pendientes de validación en UI.
+La PowerTable muestra todos los datos de Zava en una vista tabular editable — con **Save to Database**, **Approvals** y **Audit** integrados. Cualquier cambio se escribe de vuelta al SQL Database automáticamente.
 
 ---
 
