@@ -102,8 +102,8 @@ Los datos históricos de gastos reales viven en un Lakehouse con una tabla Delta
 
 Ambos caminos usan los mismos datos de Zava Environmental — gastos operativos 2024–2025 por región, estación y categoría de gasto. El formato difiere por path:
 
-- **Path 1:** cuatro archivos Excel (`zava_norte.xlsx`, `zava_centro.xlsx`, `zava_sur.xlsx`, `zava_bajio.xlsx`) — uno por región, con hojas separadas por año, tal como los tendría Zava hoy
-- **Path 2:** el archivo `zava_actuals.xlsx` — mismo dataset, cargado al Lakehouse como tabla Delta
+- **Path 1:** `zava_actuals.xlsx` — subido directamente a Plan como fuente de referencia
+- **Path 2:** `zava_actuals.xlsx` — mismo archivo, cargado al Lakehouse como tabla Delta
 
 ---
 
