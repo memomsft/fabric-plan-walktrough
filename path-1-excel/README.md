@@ -117,16 +117,14 @@ Los datos quedan disponibles en el panel **Data** bajo **Queries**.
 
 1. Selecciona **New Planning Sheet**
 2. Nombra: `Presupuesto Operativo 2026`
-3. En el panel **Data → Queries**, expande la query cargada
-4. Configura el modelo con `region`, `estacion` y `categoria_gasto` como dimensiones,
-   `monto_real_mxn` como medida de referencia (actuals 2025)
-5. Agrega una medida de captura: **+ Add measure** → **Data Input** → nombra `Presupuesto 2026`
+3. En el panel **Data → Queries**, expande `Query 1 - 2025`
+4. Marca los checkboxes de `region`, `estacion` y `categoria_gasto`
+   — aparecen como filas con jerarquía en la hoja
+5. Marca los checkboxes de `Ene` hasta `Dic`
+   — aparecen como columnas con los actuals 2025 de referencia
 
-El analista ahora ve el gasto real 2025 como referencia y captura el presupuesto
-2026 directamente en Plan — sin distribuir plantillas ni consolidar manualmente.
-
-> ⚠️ El flujo de configuración de campos y la medida Data Input están
-> pendientes de validación en UI.
+La hoja muestra la estructura completa: regiones, estaciones y categorías
+en filas, y los 12 meses como columnas con los valores reales de 2025.
 
 ---
 
