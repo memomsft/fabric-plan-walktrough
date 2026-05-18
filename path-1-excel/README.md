@@ -118,13 +118,23 @@ Los datos quedan disponibles en el panel **Data** bajo **Queries**.
 1. Selecciona **New Planning Sheet**
 2. Nombra: `Presupuesto Operativo 2026`
 3. En el panel **Data → Queries**, expande `Query 1 - 2025`
-4. Marca los checkboxes de `region`, `estacion` y `categoria_gasto`
-   — aparecen como filas con jerarquía en la hoja
-5. Marca los checkboxes de `Ene` hasta `Dic`
-   — aparecen como columnas con los actuals 2025 de referencia
+4. Marca los checkboxes de `region`, `estacion` y `categoria_gasto` — aparecen como filas con jerarquía en la hoja
+5. Marca los checkboxes de `Ene` hasta `Dic` — aparecen como columnas con los actuals 2025 de referencia
+6. En la barra superior ve a **Planning → Insert Column → Input → Number**
+7. En el panel **Data Input** configura:
+   - **Title:** `Presupuesto 2026`
+   - **Insert as:** `Visual Measure`
+   - **Input type:** `Number`
+   - **Column aggregation type:** `Sum`
+   - **Row aggregation type:** `Sum`
+   - **Distribute parent value to children:** ✅
+   - **Allow Input:** `In both read and edit mode`
+   - Deja el resto en sus valores por defecto
+8. Haz clic en **Create**
 
-La hoja muestra la estructura completa: regiones, estaciones y categorías
-en filas, y los 12 meses como columnas con los valores reales de 2025.
+La columna **Presupuesto 2026** aparece al final de cada región — editable, con soporte
+de fórmulas, lista para capturar el presupuesto 2026 viendo los actuals 2025 como
+referencia al lado izquierdo.
 
 ---
 
