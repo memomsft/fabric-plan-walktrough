@@ -62,26 +62,27 @@ Para capturar el presupuesto 2026 necesitas agregar una columna de tipo calculad
 que tome los actuals como base.
 
 1. En la barra superior, selecciona **Planning → Insert Column → Input → Number**
-2. En el panel **Data Input** configura:
+2. Selecciona **Insert a new empty series**
+3. En el panel **Data Input** configura:
    - **Title:** `Presupuesto 2026 Total`
    - **Insert as:** `Visual Measure`
    - **Input type:** `Number`
    - **Column aggregation type:** `Sum`
    - **Row aggregation type:** `Formula`
-3. En el campo **Formula** escribe:
+4. En el campo **Formula** escribe:
 
 ```
 ([Sum of Ene]+[Sum of Feb]+[Sum of Mar]+[Sum of Abr]+[Sum of May]+[Sum of Jun]+
 [Sum of Jul]+[Sum of Ago]+[Sum of Sep]+[Sum of Oct]+[Sum of Nov]+[Sum of Dic])*1.08
 ```
 
-4. Cambia el formato de display a **Millions**
-5. Activa **Distribute parent value to children** ✅
-6. **Allow Input:** `In both read and edit mode`
-7. Haz clic en **Create**
+5. Cambia el formato de display a **Millions**
+6. Activa **Distribute parent value to children** ✅
+7. **Allow Input:** `In both read and edit mode`
+8. Haz clic en **Create**
 
 La columna `Presupuesto 2026 Total` muestra automáticamente un presupuesto base
-calculado como el total anual de actuals 2025 con un incremento del 8%.
+calculado como el total anual de actuals con un incremento del 8%.
 
 > **Nota:** El 8% es un incremento de ejemplo. En producción el analista puede
 > usar cualquier fórmula — porcentaje por categoría, drivers de negocio,
