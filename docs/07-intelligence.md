@@ -19,12 +19,12 @@ en tiempo real — sin exportar nada, sin cruzar datos manualmente.
 
 ---
 
-## Configurar las fuentes de datos
+## Fuentes de datos disponibles
 
-El panel **Data** (lado derecho del canvas) muestra automáticamente:
+El panel **Data** muestra automáticamente dos secciones:
 
 - **Semantic Model** → campos de `gastos_operativos`: `año`, `categoria_gasto`,
-  `estacion`, `mes`, `monto_real_mxn`, `region`, `Total Real`
+  `estacion`, `region`, `Total Real`
 - **From Sheets** → medidas de la Planning Sheet: `Presupuesto 2026 Total`
   (calculado) y `Presupuesto 2026` (input manual)
 
@@ -35,48 +35,50 @@ El panel **Data** (lado derecho del canvas) muestra automáticamente:
 
 ## Agregar visuales
 
-El panel **Visualizations** (lado derecho) tiene las siguientes categorías:
+El panel **Visualizations** tiene las categorías:
 **Charts 100+, Planning, PowerTable, Matrix, Table, Gantt, Filter, KPIs**
 
 ### KPI Cards — totales ejecutivos
 
-1. Selecciona **KPIs** del panel Visualizations
-2. Arrástralo al canvas
-3. Asigna **Value:** `Total Real` (from Semantic Model)
-4. Repite para un segundo KPI con `Presupuesto 2026 Total` (from Sheets)
+1. Selecciona **KPIs** del panel Visualizations y arrástralo al canvas
+2. Asigna **Value:** `Total Real` (from Semantic Model)
+3. Repite para un segundo KPI con `Presupuesto 2026 Total` (from Sheets)
 
-> Para renombrar el KPI: haz doble clic sobre el título del visual y edítalo
+> Para renombrar el KPI haz doble clic sobre el título del visual y edítalo
 > directamente en el canvas.
 
 ### Gráfica comparativa por región
 
 1. Selecciona **Charts 100+** → **Bar/Column**
-2. En el panel de configuración del visual asigna:
+2. Asigna:
    - **Category:** `region` (from Semantic Model)
    - **Actual(s):** `Total Real` (from Semantic Model)
    - **Comparison 1 (vs Actuals):** `Presupuesto 2026 Total` (from Sheets)
 
-### Tabla de detalle por categoría y año
+Este visual muestra el comparativo plan vs real por región en una sola vista.
+
+### Tabla de actuals por categoría y año
 
 1. Selecciona **Matrix** del panel Visualizations
-2. En el panel de configuración asigna:
+2. Asigna:
    - **Rows:** `region` y `categoria_gasto` (from Semantic Model)
    - **Columns:** `año` (from Semantic Model)
    - **Values (AC):** `Total Real` (from Semantic Model)
-   - **Compare to Plan (PL):** `Presupuesto 2026 Total` (from Sheets)
 
-> ⚠️ Para agregar `Presupuesto 2026 Total` a la Matrix usa el campo con
-> ícono de tabla — no el campo `#` que corresponde a `Presupuesto 2026`
-> (input manual).
+> ⚠️ La Matrix solo acepta campos de la misma fuente de datos. No es posible
+> combinar medidas del Semantic Model con medidas de From Sheets en el mismo
+> visual Matrix — el sistema lanza un error de dimensiones incompatibles.
+> El comparativo plan vs real se muestra en el Bar/Column chart.
 
 ---
 
 ## Resultado final
 
 El dashboard muestra en una sola vista:
-- El gasto real histórico de Zava (actuals del Semantic Model)
-- El presupuesto 2026 calculado automáticamente (desde la Planning Sheet)
-- La comparativa por región, categoría y año
+- **KPI Total Real:** gasto real histórico acumulado de Zava
+- **KPI Presupuesto Total 2026:** presupuesto calculado automáticamente
+- **Bar chart:** comparativo plan vs real por región
+- **Matrix:** detalle de actuals por categoría y año
 
 Cuando el analista ajusta valores en la Planning Sheet y ejecuta Writeback,
 el dashboard se actualiza — sin exportar, sin reconciliar, sin versiones
