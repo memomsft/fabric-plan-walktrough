@@ -66,6 +66,14 @@ Con la PowerTable configurada, tienes acceso a:
 
 ---
 
+> **Flujo controller → analista:** Los ajustes que el controller hace en PowerTable
+> se persisten en `zava-plan-db`. Plan soporta **Connected Planning** — la capacidad
+> de vincular tablas de PowerTable como inputs de una Planning Sheet — lo que
+> permitiría que los ajustes del controller se reflejen automáticamente en la vista
+> del analista. Esta configuración avanzada está fuera del alcance de este ejercicio.
+>
+> 📖 Fuente: [PowerTable — Microsoft Learn](https://learn.microsoft.com/en-us/fabric/iq/plan/powertable-how-to-create-table-app)
+
 ## Siguiente paso
 
 → [07 · Intelligence Sheet](./07-intelligence.md)
