@@ -21,58 +21,53 @@ en tiempo real — sin exportar nada, sin cruzar datos manualmente.
 
 ## Configurar las fuentes de datos
 
-En el panel **Data** (lado derecho del canvas) tienes tres secciones:
+El panel **Data** (lado derecho del canvas) muestra automáticamente:
 
-- **Semantic Model** → conecta a `zava_semantic_model` para los actuals
-- **From Sheets** → consume datos de la Planning Sheet (presupuesto calculado)
-- **Queries** → permite cargar archivos adicionales si fuera necesario
+- **Semantic Model** → campos de `gastos_operativos`: `año`, `categoria_gasto`,
+  `estacion`, `mes`, `monto_real_mxn`, `region`, `Total Real`
+- **From Sheets** → medidas de la Planning Sheet: `Presupuesto 2026 Total`
+  (calculado) y `Presupuesto 2026` (input manual)
 
-### Conectar el Semantic Model
-
-1. Bajo **Semantic Model**, haz clic en **+ Add**
-2. Selecciona la conexión `zava-conn-semantic-model`
-3. Selecciona `zava_semantic_model` → **Add**
-
-Las dimensiones (`region`, `estacion`, `categoria_gasto`, `año`, `mes`) y la
-medida `Total Real` quedan disponibles para los visuales.
-
-### Activar From Sheets
-
-Expande **From Sheets** — aparece `Presupuesto Operativo 2026` con la medida
-`Presupuesto 2026 Total` lista para usar.
+> No es necesario configurar las fuentes manualmente — Plan las detecta
+> automáticamente desde el ítem Plan.
 
 ---
 
 ## Agregar visuales
 
-### Abrir el panel de Visualizaciones
-
-Haz clic en el ícono de **Visualizations** en el lado derecho del canvas para
-abrir el panel de tipos de visual disponibles.
+El panel **Visualizations** (lado derecho) tiene las siguientes categorías:
+**Charts 100+, Planning, PowerTable, Matrix, Table, Gantt, Filter, KPIs**
 
 ### KPI Cards — totales ejecutivos
 
-1. Selecciona el visual **KPI** del panel de Visualizaciones
+1. Selecciona **KPIs** del panel Visualizations
 2. Arrástralo al canvas
-3. Asigna:
-   - **Value:** `Total Real` (from Semantic Model) — actuals 2025
-4. Repite para crear un segundo KPI con `Presupuesto 2026 Total` (from Sheets)
+3. Asigna **Value:** `Total Real` (from Semantic Model)
+4. Repite para un segundo KPI con `Presupuesto 2026 Total` (from Sheets)
+
+> Para renombrar el KPI: haz doble clic sobre el título del visual y edítalo
+> directamente en el canvas.
 
 ### Gráfica comparativa por región
 
-1. Selecciona **Charts 100+** del panel de Visualizaciones
-2. Elige un **Bar chart** o **Column chart**
-3. Asigna:
-   - **Rows/Axis:** `region` (from Semantic Model)
-   - **Values:** `Total Real` y `Presupuesto 2026 Total`
+1. Selecciona **Charts 100+** → **Bar/Column**
+2. En el panel de configuración del visual asigna:
+   - **Category:** `region` (from Semantic Model)
+   - **Actual(s):** `Total Real` (from Semantic Model)
+   - **Comparison 1 (vs Actuals):** `Presupuesto 2026 Total` (from Sheets)
 
-### Tabla de detalle por categoría
+### Tabla de detalle por categoría y año
 
-1. Selecciona el visual **Matrix**
-2. Asigna:
-   - **Rows:** `region` → `categoria_gasto`
-   - **Columns:** `año`
-   - **Values:** `Total Real` y `Presupuesto 2026 Total`
+1. Selecciona **Matrix** del panel Visualizations
+2. En el panel de configuración asigna:
+   - **Rows:** `region` y `categoria_gasto` (from Semantic Model)
+   - **Columns:** `año` (from Semantic Model)
+   - **Values (AC):** `Total Real` (from Semantic Model)
+   - **Compare to Plan (PL):** `Presupuesto 2026 Total` (from Sheets)
+
+> ⚠️ Para agregar `Presupuesto 2026 Total` a la Matrix usa el campo con
+> ícono de tabla — no el campo `#` que corresponde a `Presupuesto 2026`
+> (input manual).
 
 ---
 
@@ -80,12 +75,12 @@ abrir el panel de tipos de visual disponibles.
 
 El dashboard muestra en una sola vista:
 - El gasto real histórico de Zava (actuals del Semantic Model)
-- El presupuesto 2026 calculado (desde la Planning Sheet)
-- La comparativa por región, estación y categoría
+- El presupuesto 2026 calculado automáticamente (desde la Planning Sheet)
+- La comparativa por región, categoría y año
 
-Cuando el analista ajusta valores en la Planning Sheet y ejecuta Writeback, el
-dashboard se actualiza automáticamente — sin exportar, sin reconciliar, sin
-versiones de archivos.
+Cuando el analista ajusta valores en la Planning Sheet y ejecuta Writeback,
+el dashboard se actualiza — sin exportar, sin reconciliar, sin versiones
+de archivos.
 
 > **En producción:** Intelligence Sheet soporta más de 100 tipos de visual
 > incluyendo charts IBCS para reportes financieros estándar, Gantt para
