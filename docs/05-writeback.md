@@ -1,5 +1,12 @@
 # 05 · Writeback — Persistir el presupuesto
 
+> **¿Por qué necesitamos `zava-plan-db`?** La conexión a una Fabric SQL Database
+> es opcional en Plan — solo se requiere para colaboración y writeback. En este
+> ejercicio configuramos writeback para persistir el presupuesto capturado, por
+> lo que creamos `zava-plan-db` en el paso de prerequisitos.
+>
+> 📖 Fuente: [Prerequisites for Plan (preview) — MicrosoftDocs/fabric-docs](https://github.com/MicrosoftDocs/fabric-docs/blob/main/docs/iq/plan/overview-prerequisites.md)
+
 El Writeback escribe los valores del presupuesto capturado en la Planning Sheet
 hacia el `zava-plan-db` SQL Database. Este paso es el puente entre la captura
 del analista y la vista de gestión del controller en PowerTable.
