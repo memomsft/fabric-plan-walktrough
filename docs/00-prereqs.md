@@ -56,34 +56,40 @@ por lo que necesitamos crear `zava-plan-db` manualmente.
 2. Nombra: `zava-plan-db`
 3. Haz clic en **Create**
 
-### Crear las conexiones
-
-**Conexión al SQL Database** (para Writeback y colaboración):
+### Crear la conexión al SQL Database
 
 1. Ve a ⚙️ **Settings** → **Manage connections and gateways** → **+ New** → **Cloud**
 2. Completa:
    - **Connection name:** `zava-conn-sql`
    - **Connection type:** `SQL database in Fabric`
    - **Authentication method:** `OAuth 2.0`
-3. Selecciona **Edit credentials** → inicia sesión
+3. Selecciona **Edit credentials** → inicia sesión con tu cuenta Microsoft
 4. Haz clic en **Create**
 
-> ⚠️ **Direct Lake — configuración adicional requerida:**
-> Si tu Semantic Model está en modo **Direct Lake** (que es el caso de este
-> ejercicio), la conexión por defecto usa SSO — y Plan **no soporta SSO para
-> Direct Lake**. Debes crear una conexión con fixed credentials directamente
-> desde el Semantic Model:
->
-> 1. En el workspace, selecciona **...** junto a `zava_semantic_model`
->    → **Settings** → **Gateway & Cloud Connections**
-> 2. La conexión por defecto aparece como **Single Sign On** — no la uses
-> 3. Selecciona **Create a connection** desde la lista de conexiones
-> 4. Nombra la conexión: `zava-conn-semantic-model`
-> 5. **Authentication method:** `OAuth 2.0`
-> 6. Haz clic en **Create**
-> 7. Selecciona la nueva conexión de la lista y haz clic en **Apply**
->
+---
+
+## Conexión al Semantic Model (Direct Lake)
+
 > 📖 Fuente: [Create a semantic model connection — Microsoft Learn](https://learn.microsoft.com/en-us/fabric/iq/plan/planning-how-to-create-semantic-model-connection#connect-to-a-direct-lake-semantic-model)
+
+Plan requiere una conexión al Semantic Model para leer los actuals. Esta
+conexión es **obligatoria**.
+
+> ⚠️ **Direct Lake — configuración especial requerida:**
+> Los Semantic Models en modo Direct Lake usan SSO por defecto — y Plan
+> **no soporta SSO para Direct Lake**. Debes crear la conexión directamente
+> desde el Semantic Model con fixed credentials, no desde Manage connections
+> and gateways.
+
+1. En el workspace, selecciona **...** junto a `zava_semantic_model`
+   → **Settings** → **Gateway & Cloud Connections**
+2. La conexión por defecto aparece como **Single Sign On** — no la uses
+3. Selecciona **Create a connection** desde la lista de conexiones
+4. Completa:
+   - **Connection name:** `zava-conn-semantic-model`
+   - **Authentication method:** `OAuth 2.0`
+5. Haz clic en **Create**
+6. Selecciona la nueva conexión de la lista y haz clic en **Apply**
 
 ---
 
