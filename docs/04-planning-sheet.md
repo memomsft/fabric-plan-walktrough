@@ -24,17 +24,35 @@ cada área llenaba y mandaba por correo.
 
 ## Configurar el modelo de planeación
 
-Una vez conectado, el panel **Data** muestra los campos disponibles del Semantic Model.
+Una vez conectado, el panel **Data** muestra los campos disponibles del
+Semantic Model bajo `gastos_operativos`.
 
-1. Marca los checkboxes de `region`, `estacion` y `categoria_gasto`
-   — aparecen como filas con jerarquía en la hoja
-2. Marca los checkboxes de `año` y `mes`
-   — aparecen como dimensiones de columna
-3. Marca `Total Real`
-   — aparece como medida de referencia (actuals, solo lectura)
+### Configurar las filas
 
-La hoja muestra la estructura jerárquica: región → categoría de gasto → estación,
-con los gastos reales mensuales de 2025 como referencia.
+En el panel **Fields → Rows**, agrega en este orden:
+1. `region`
+2. `categoria_gasto`
+3. `estacion`
+
+Esto crea la jerarquía región → categoría → estación en las filas de la hoja.
+
+### Configurar los valores
+
+En el panel **Fields → Values**, agrega únicamente:
+- `Total Real`
+
+> ⚠️ No agregues `año`, `mes` ni `monto_real_mxn` a Values — Plan los
+> trataría como medidas numéricas y los sumaría, lo cual no tiene sentido
+> en este contexto.
+
+### Resultado esperado
+
+La hoja muestra:
+- **Filas:** región → categoría de gasto → estación (con blancos donde la
+  combinación no existe — esto es comportamiento correcto)
+- **Columnas:** estaciones expandidas por región
+- **Values:** `Total Real` en Millones — el gasto real acumulado de Zava
+  como referencia para capturar el presupuesto 2026
 
 ---
 
