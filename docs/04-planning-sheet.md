@@ -94,6 +94,15 @@ requiere — por ejemplo, una inversión especial en una estación específica.
    - **Allow Input:** `In both read and edit mode`
 4. Haz clic en **Create**
 
+
+> **¿Cuándo usar cada columna?**
+> - `Presupuesto 2026 Total` (calculado) → es el presupuesto base automático.
+>   Úsalo como referencia — no es editable.
+> - `Presupuesto 2026` (input manual) → úsalo **solo cuando necesitas ajustar
+>   una estación específica** que difiere del base calculado. Por ejemplo, si
+>   Recolección en CDMX tendrá una inversión especial en 2026, capturas ese
+>   valor aquí. El resto de las celdas puede quedar vacío.
+
 ---
 
 ## Capturar ajustes de presupuesto
