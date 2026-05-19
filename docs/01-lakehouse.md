@@ -40,7 +40,9 @@ pueda consumir.
 1. Haz clic derecho sobre `zava_actuals.csv` en la sección Files
 2. Selecciona **Load to Tables** → **New table**
 3. Nombra la tabla: `gastos_operativos`
-4. Confirma el esquema detectado automáticamente:
+4. Haz clic en **Load** y espera a que termine
+
+Verifica que `gastos_operativos` aparezca bajo **Tables** en el Lakehouse Explorer.
 
 | Columna | Tipo | Descripción |
 |---|---|---|
@@ -50,10 +52,6 @@ pueda consumir.
 | `estacion` | string | Estación dentro de la región |
 | `categoria_gasto` | string | Categoría del gasto operativo |
 | `monto_real_mxn` | int64 | Monto real en pesos mexicanos |
-
-5. Haz clic en **Load** y espera a que termine
-
-Verifica que `gastos_operativos` aparezca bajo **Tables** en el Lakehouse Explorer.
 
 ---
 
