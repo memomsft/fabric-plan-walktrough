@@ -1,12 +1,13 @@
 # 06 · PowerTable — Gestión y gobernanza del presupuesto
 
-La PowerTable Sheet conecta el `zava-plan-db` a una aplicación tabular gobernada
-donde el controller o CFO puede revisar los presupuestos capturados, hacer ajustes
-con trazabilidad completa, y aprobar el plan final.
+La PowerTable Sheet conecta `zava-plan-db` a una aplicación tabular gobernada.
 
-> **Propósito en Zava:** reemplaza el proceso de "mandame el Excel para revisarlo
-> y te digo qué cambiar". Aquí el controller ve los datos en tiempo real, ajusta
-> directamente, y cada cambio queda registrado con quién lo hizo y cuándo.
+> **Propósito en Zava:** PowerTable no es para revisar el presupuesto en formato
+> de negocio — para eso está la Intelligence Sheet. PowerTable es para **gestión
+> y gobernanza de datos**: el controller puede ver qué valores se capturaron,
+> hacer correcciones puntuales con trazabilidad completa (quién cambió qué y
+> cuándo), y configurar flujos de aprobación. Es el audit trail del proceso de
+> planeación.
 
 ---
 
