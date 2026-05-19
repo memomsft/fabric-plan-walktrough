@@ -45,6 +45,28 @@ Esta medida es la que Plan usará como referencia de actuals en la Planning Shee
 
 ---
 
+## Configurar la conexión Direct Lake para Plan
+
+> 📖 Fuente: [Create a semantic model connection — Microsoft Learn](https://learn.microsoft.com/en-us/fabric/iq/plan/planning-how-to-create-semantic-model-connection#connect-to-a-direct-lake-semantic-model)
+
+Plan no soporta SSO para modelos Direct Lake. Debes crear una conexión con
+fixed credentials directamente desde el Semantic Model.
+
+> ⚠️ Si omites este paso e intentas conectar el Semantic Model desde Plan,
+> recibirás un error de conexión.
+
+1. En el workspace, selecciona **...** junto a `zava_semantic_model`
+   → **Settings** → **Gateway & Cloud Connections**
+2. La conexión por defecto aparece como **Single Sign On** — no la uses
+3. Selecciona **Create a connection** desde la lista de conexiones
+4. Completa:
+   - **Connection name:** `zava-conn-semantic-model`
+   - **Authentication method:** `OAuth 2.0`
+5. Haz clic en **Create**
+6. Selecciona la nueva conexión de la lista y haz clic en **Apply**
+
+---
+
 ## Validar el modelo (opcional)
 
 1. Desde el Semantic Model, selecciona **Explore this data** → **Auto-create report**
