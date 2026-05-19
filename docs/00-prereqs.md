@@ -30,39 +30,45 @@ Crea un workspace con capacidad Fabric asignada. Nombre sugerido: `zava-planning
 
 ---
 
-## Fabric SQL Database
+## Conexiones a Fabric SQL Database (opcional)
 
-Plan requiere una Fabric SQL Database como destino de Writeback — donde se
-almacenarán los presupuestos capturados. Esta base **debe crearse manualmente**
-antes de crear el ítem Plan.
+> 📖 Fuente: [Prerequisites for Plan (preview) — MicrosoftDocs/fabric-docs](https://github.com/MicrosoftDocs/fabric-docs/blob/main/docs/iq/plan/overview-prerequisites.md)
+
+Al crear el ítem Plan, Fabric crea automáticamente un Fabric SQL Database
+interno (`__fabric_plan_sys`) que almacena la metadata del reporte de Plan.
+Esta base es de sistema — no la modifiques ni la uses para datos de negocio.
+
+Las conexiones a una Fabric SQL Database adicional son **opcionales** y solo
+se requieren si necesitas alguno de estos escenarios:
+
+| Escenario | ¿Necesitas una SQL Database adicional? |
+|---|---|
+| Solo capturar y analizar presupuesto (un usuario) | ❌ No |
+| Colaboración — múltiples usuarios editando el plan | ✅ Sí |
+| Writeback — persistir el presupuesto capturado | ✅ Sí |
+
+En este ejercicio usamos Writeback para persistir el presupuesto de Zava,
+por lo que necesitamos crear `zava-plan-db` manualmente.
+
+### Crear la Fabric SQL Database (para Writeback)
 
 1. En el workspace `zava-planning`, selecciona **+ New item** → **SQL database**
 2. Nombra: `zava-plan-db`
-3. Haz clic en **Create** y espera a que termine
+3. Haz clic en **Create**
 
-> **¿Por qué dos bases de datos?** Al crear el ítem Plan, Fabric crea
-> automáticamente `__fabric_plan_sys` — una base de sistema interna para metadata
-> de Plan que **no puede usarse** como destino de writeback ni debe modificarse.
-> La `zava-plan-db` es la base de negocio donde viven los presupuestos capturados.
+### Crear las conexiones
 
----
-
-## Conexiones
-
-Plan necesita dos conexiones configuradas en Settings para acceder al SQL Database
-y al Semantic Model.
-
-### Conexión al SQL Database
+**Conexión al SQL Database** (para Writeback y colaboración):
 
 1. Ve a ⚙️ **Settings** → **Manage connections and gateways** → **+ New** → **Cloud**
 2. Completa:
    - **Connection name:** `zava-conn-sql`
    - **Connection type:** `SQL database in Fabric`
    - **Authentication method:** `OAuth 2.0`
-3. Selecciona **Edit credentials** → inicia sesión con tu cuenta Microsoft
+3. Selecciona **Edit credentials** → inicia sesión
 4. Haz clic en **Create**
 
-### Conexión al Semantic Model
+**Conexión al Semantic Model** (obligatoria):
 
 1. En la misma pantalla, selecciona **+ New** → **Cloud**
 2. Completa:
