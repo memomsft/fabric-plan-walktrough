@@ -1,7 +1,7 @@
 # 04 · Planning Sheet — Captura del presupuesto 2026
 
 La Planning Sheet es donde el analista define y captura el presupuesto operativo
-de Zava para 2026 viendo los actuals 2025 como referencia. Reemplaza el Excel que
+de Zava para 2026 viendo los actuals históricos como referencia. Reemplaza el Excel que
 cada área llenaba y mandaba por correo.
 
 ---
@@ -50,17 +50,16 @@ En el panel **Fields → Values**, agrega únicamente:
 La hoja muestra:
 - **Filas:** región → categoría de gasto → estación (con blancos donde la
   combinación no existe — esto es comportamiento correcto)
-- **Columnas:** estaciones expandidas por región
 - **Values:** `Total Real` en Millones — el gasto real acumulado de Zava
   como referencia para capturar el presupuesto 2026
 
 ---
 
-## Agregar la medida de presupuesto
+## Agregar el presupuesto base calculado
 
-Plan puede calcular automáticamente el presupuesto 2026 tomando los actuals
-históricos como base. En lugar de que el analista capture valores manualmente,
-Plan aplica la lógica de negocio directamente sobre los datos del Semantic Model.
+Plan calcula automáticamente el presupuesto 2026 tomando los actuals
+históricos como base — el analista no empieza desde cero, tiene un punto
+de partida inteligente.
 
 1. En la barra superior, selecciona **Planning → Insert Column → Calculated → Formula**
 2. En el panel **Formula Measure** configura:
@@ -71,18 +70,48 @@ Plan aplica la lógica de negocio directamente sobre los datos del Semantic Mode
 3. Haz clic en **Create**
 
 La columna `Presupuesto 2026 Total` se popula automáticamente para cada
-región, categoría y estación — mostrando el presupuesto base calculado como
-un incremento del 8% sobre el gasto real histórico de Zava.
+región, categoría y estación — mostrando el presupuesto base como un
+incremento del 8% sobre el gasto real histórico de Zava.
 
 > **Nota:** El 8% es un incremento de ejemplo. En producción el analista
 > puede usar cualquier fórmula basada en los campos disponibles: `Total Real`,
-> `categoria_gasto`, `estacion`, `region`, `COLUMN` y `ROW` — permitiendo
-> lógica diferenciada por categoría, región o estación.
->
-> **En producción:** Plan también soporta columnas de tipo **Input** para
-> captura manual cuando el analista necesita sobreescribir el valor calculado
-> para una fila específica — combinando así el presupuesto base automático
-> con ajustes discrecionales del negocio.
+> `categoria_gasto`, `estacion`, `region`, `COLUMN` y `ROW`.
+
+---
+
+## Agregar columna de ajustes manuales
+
+El analista puede sobreescribir el presupuesto base cuando el negocio lo
+requiere — por ejemplo, una inversión especial en una estación específica.
+
+1. En la barra superior, selecciona **Planning → Insert Column → Input → Number**
+2. Selecciona **Insert a new empty series**
+3. En el panel **Data Input** configura:
+   - **Title:** `Presupuesto 2026`
+   - **Input type:** `Number`
+   - **Row aggregation type:** `Sum`
+   - **Distribute parent value to children:** ✅
+   - **Allow Input:** `In both read and edit mode`
+4. Haz clic en **Create**
+
+---
+
+## Capturar ajustes de presupuesto
+
+1. Expande la jerarquía hasta nivel estación
+2. Haz clic en la celda de la estación que quieres ajustar
+3. En la barra de fórmula superior escribe el valor en Millones
+   (ej. `55` equivale a 55 millones MXN) y presiona **Enter**
+
+Plan propaga automáticamente el valor hacia los niveles padre —
+categoría, región y total general se actualizan en tiempo real.
+
+> **Distribute parent value to children** está activo — cuando capturas
+> un valor a nivel estación, los subtotales de categoría y región
+> se recalculan automáticamente.
+
+Captura al menos 4 valores en diferentes regiones y categorías antes
+de continuar al paso de Writeback.
 
 ---
 
