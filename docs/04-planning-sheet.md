@@ -58,39 +58,31 @@ La hoja muestra:
 
 ## Agregar la medida de presupuesto
 
-Para capturar el presupuesto 2026 necesitas agregar una columna de tipo calculado
-que tome los actuals como base.
+Plan puede calcular automáticamente el presupuesto 2026 tomando los actuals
+históricos como base. En lugar de que el analista capture valores manualmente,
+Plan aplica la lógica de negocio directamente sobre los datos del Semantic Model.
 
-1. En la barra superior, selecciona **Planning → Insert Column → Input → Number**
-2. Selecciona **Insert a new empty series**
-3. En el panel **Data Input** configura:
+1. En la barra superior, selecciona **Planning → Insert Column → Calculated → Formula**
+2. En el panel **Formula Measure** configura:
    - **Title:** `Presupuesto 2026 Total`
-   - **Insert as:** `Visual Measure`
-   - **Input type:** `Number`
-   - **Column aggregation type:** `Sum`
+   - **Data type:** `Number`
+   - **Formula:** `[Total Real]*1.08`
    - **Row aggregation type:** `Formula`
-4. En el campo **Formula** escribe:
+3. Haz clic en **Create**
 
-```
-([Sum of Ene]+[Sum of Feb]+[Sum of Mar]+[Sum of Abr]+[Sum of May]+[Sum of Jun]+
-[Sum of Jul]+[Sum of Ago]+[Sum of Sep]+[Sum of Oct]+[Sum of Nov]+[Sum of Dic])*1.08
-```
+La columna `Presupuesto 2026 Total` se popula automáticamente para cada
+región, categoría y estación — mostrando el presupuesto base calculado como
+un incremento del 8% sobre el gasto real histórico de Zava.
 
-5. Cambia el formato de display a **Millions**
-6. Activa **Distribute parent value to children** ✅
-7. **Allow Input:** `In both read and edit mode`
-8. Haz clic en **Create**
-
-La columna `Presupuesto 2026 Total` muestra automáticamente un presupuesto base
-calculado como el total anual de actuals con un incremento del 8%.
-
-> **Nota:** El 8% es un incremento de ejemplo. En producción el analista puede
-> usar cualquier fórmula — porcentaje por categoría, drivers de negocio,
-> proyecciones por estación, etc.
+> **Nota:** El 8% es un incremento de ejemplo. En producción el analista
+> puede usar cualquier fórmula basada en los campos disponibles: `Total Real`,
+> `categoria_gasto`, `estacion`, `region`, `COLUMN` y `ROW` — permitiendo
+> lógica diferenciada por categoría, región o estación.
 >
-> **En producción:** Plan soporta escenarios (Base, Optimista, Pesimista),
-> forecasts rolling, y simulaciones what-if que permiten modelar múltiples
-> versiones del presupuesto sin duplicar datos.
+> **En producción:** Plan también soporta columnas de tipo **Input** para
+> captura manual cuando el analista necesita sobreescribir el valor calculado
+> para una fila específica — combinando así el presupuesto base automático
+> con ajustes discrecionales del negocio.
 
 ---
 
