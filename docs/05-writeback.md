@@ -55,6 +55,13 @@ del analista y la vista de gestión del controller en PowerTable.
 > después del Writeback. Cualquier cambio posterior en la Planning Sheet requiere
 > ejecutar Writeback nuevamente para sincronizar.
 
+> **Sobre el formato de la tabla `presupuesto_2026`:** Los datos se almacenan
+> en formato **Long** — una fila por cada combinación región/estación/categoría/medida.
+> Verás columnas internas de Plan como `ValueColumnName`, `IrScenario`, `Source`
+> que son metadata del sistema. Esto es comportamiento esperado — la tabla no
+> está diseñada para ser leída directamente sino para ser consumida por PowerTable
+> e Intelligence Sheet.
+
 ---
 
 ## Siguiente paso
